@@ -20,17 +20,19 @@ public class FileFilter {
      * @param directory The parent directory
      */
     private void addFiles(File directory){
-        File[] fileList= directory.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                //System.out.println(pattern.matcher(name).matches());
-                return pattern.matcher(name).matches();
-            }
-        });
+        try {
+            File[] fileList = directory.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    //System.out.println(pattern.matcher(name).matches());
+                    return pattern.matcher(name).matches();
+                }
+            });
 
-        if(fileList!=null && fileList.length>0) {
-            files.addAll(Arrays.asList(fileList));
-        }
+            if (fileList != null && fileList.length > 0) {
+                files.addAll(Arrays.asList(fileList));
+            }
+        }catch (Exception e){}
     }
 
     /**
@@ -38,16 +40,18 @@ public class FileFilter {
      * @param directory The parent directory
      */
     private void addFolders(File directory){
-        File[] folderList= directory.listFiles(new FilenameFilter() {
-            @Override
-            public boolean accept(File dir, String name) {
-                return new File(dir,name).isDirectory();
-            }
-        });
+        try {
+            File[] folderList = directory.listFiles(new FilenameFilter() {
+                @Override
+                public boolean accept(File dir, String name) {
+                    return new File(dir, name).isDirectory();
+                }
+            });
 
-        if(folderList!=null && folderList.length>0) {
-            folders.addAll(Arrays.asList(folderList));
-        }
+            if (folderList != null && folderList.length > 0) {
+                folders.addAll(Arrays.asList(folderList));
+            }
+        }catch (Exception e){ }
     }
 
     /**
