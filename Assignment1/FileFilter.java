@@ -59,7 +59,8 @@ public class FileFilter {
      */
     public void displayFiles(String regex){
         pattern=Pattern.compile(regex);
-        File home=new File("/home/zemoso/");
+        String homeDirectory="/home";
+        File home=new File(homeDirectory);
 
         folders.clear();
         files.clear();
